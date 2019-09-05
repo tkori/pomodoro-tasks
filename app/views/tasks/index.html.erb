@@ -1,0 +1,30 @@
+<div id="timer" style="width: 100%;height:280px;background-color:lightgray;text-align:center;padding-top:10px;border-radius:10px;">
+  <p class="pomodoro-title" style="font-size:1.3em;margin-bottom:0">---</p>
+  <p id="time" style="font-size:6.5em;letter-spacing:7px;margin-bottom:7px;">25:00</p>
+  <div class="buttons" style="width:140px;height:48px;margin:0 auto;position:relative;">
+    <span id="play" style='cursor:pointer;visibility:visible;position:absolute;top:0;left:0;'><%= fa_icon "play 3x" %></span>
+    <span id="pause" style='cursor:pointer;visibility:hidden;position:absolute;top:0;left:0;'><%= fa_icon "pause 3x" %></span>
+    <span id="stop" style='cursor:pointer;position:absolute;top:0;right:0;'><%= fa_icon "stop 3x" %></span>
+  </div>
+</div>
+
+<div id="form" style="position:relative; margin-top: 30px;">
+  <%= form_for @task, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "New Task", style: "font-size: 1.3em;"%>
+      <div id="task-input" style="position:relative;">
+        <%= f.text_field :title, class: "form-control", style: "padding-right: 225px;" %>
+        <%= f.label :total, "ポモドーロ数：", style: "position:absolute;top:7px;right:105px;" %>
+        <%= f.number_field :total, class: 'form-group', value: 1, in: 1..999, style: "position:absolute;top:4px;right:50px;margin:0;text-align:center;"%>
+      </div>
+      <%= f.hidden_field :status, value: 0 %>
+      <%= f.hidden_field :done, value: 0 %>
+    </div>
+    <%= f.submit "+", class: "btn btn-primary", style: "position:absolute; right:0; bottom:0" %>
+  <% end %>
+</div>
+
+
+<ul id="tasks" class="list-group" style="margin: 30px 0 80px;">
+  <%= render @tasks %>
+</ul>

@@ -1,0 +1,19 @@
+<% completion_rate = task.total == 0 ? 0 : (task.done / task.total.to_f * 100).round %>
+<li id="task-<%= task.id %>" class="list-group-item" style="position:relative;">
+  <span>
+    <%= check_box_tag :status, class: "checkbox" %>
+    <!-- <%= link_to content_tag(:i, '', class: 'fa fa-check fa-lg', id: "task-#{task.id}-checkbox"), '', remote: true, style: "margin-left: 8px;" %> -->
+  </span>
+  <span class="task-title"><%= task.title %></span>
+  <!-- <span style="position:absolute;top:11px;right:120px;"><%= task.done %> / <%= task.total %></span> -->
+  <div class="progress" style="margin-top:8px;">
+    <div class="progress-bar" role="progressbar" style="width: <%= completion_rate %>%;" aria-valuenow="<%= completion_rate %>" aria-valuemin="0" aria-valuemax="100"><%= completion_rate %>%</div>
+  </div>
+  <div style="position:absolute;top:11px;right:24px;">
+    <!-- <%= link_to content_tag(:i, '', class: 'fa fa-edit fa-lg task-edit', id: "task-#{task.id}-edit"), edit_task_path(task.id), remote: true, style: "margin-left: 8px;" %> -->
+    <span class="delete">
+      <%= link_to content_tag(:i, '', class: 'fa fa-trash fa-lg'), task_path(task.id), method: :delete, remote: true, style: "margin-left: 5px;" %></span>
+    </span>
+    <!-- <%= link_to content_tag(:i, '', class: 'fa fa-save fa-lg'), task_path(task.id), method: :patch, remote: true, style: "margin-left: 5px;visibility:hidden;" %></span> -->
+  </div>
+</li>

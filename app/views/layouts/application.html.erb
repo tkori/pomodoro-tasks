@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PomodoroTasks</title>
+    <title>Pomodoro Tasks</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
@@ -18,24 +19,30 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item active">
-              <%= link_to "#{current_user.name}", user_path(current_user.id), class: "nav-link" %>
-            </li>
-            <li class="nav-item active">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item active">
-              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item active">
-              <%= link_to "新規登録", new_user_registration_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown active">
+            <%= link_to "#{current_user.name}", user_path(current_user.id), class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown"}, aria: { haspopup: "true", expanded: "false" } %>
+            
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "ポモドーロ一覧", user_path(current_user.id), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
         </ul>
       </div>
     </nav>
-    <%= yield %>
+    
+    <div id="wrapper" style="width: 65%; margin: 0 auto; padding-top: 30px;">
+      <%= yield %>
+    </div>
   </body>
 </html>
