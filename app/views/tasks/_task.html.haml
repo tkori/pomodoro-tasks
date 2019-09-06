@@ -1,0 +1,14 @@
+/ <haml_silent> completion_rate = task.total == 0 ? 0 : (task.done / task.total.to_f * 100).round </haml_silent>
+%li.list-group-item{:id => "task-#{task.id}", :style => "position:relative;"}
+  / <haml_loud> link_to content_tag(:i, &#39;&#39;, class: &#39;fa fa-check fa-lg&#39;, id: &quot;task-#{task.id}-checkbox&quot;), &#39;&#39;, remote: true, style: &quot;margin-left: 8px;&quot; </haml_loud>
+  %span.task-title= task.title
+  / <span style="position:absolute;top:11px;right:120px;"><haml_loud> task.done </haml_loud> / <haml_loud> task.total </haml_loud></span>
+  -# .progress{:style => "margin-top:8px;"}
+  -#   .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => completion_rate, :role => "progressbar", :style => "width: #{completion_rate}%;"}
+  -#     = completion_rate
+  -#     \%
+  %div{:style => "position:absolute;top:11px;right:24px;"}
+    / <haml_loud> link_to content_tag(:i, &#39;&#39;, class: &#39;fa fa-edit fa-lg task-edit&#39;, id: &quot;task-#{task.id}-edit&quot;), edit_task_path(task.id), remote: true, style: &quot;margin-left: 8px;&quot; </haml_loud>
+    %span.delete
+      = link_to content_tag(:i, '', class: 'fa fa-trash fa-lg'), task_path(task.id), method: :delete, remote: true, style: "margin-left: 5px;"
+    / <haml_loud> link_to content_tag(:i, &#39;&#39;, class: &#39;fa fa-save fa-lg&#39;), task_path(task.id), method: :patch, remote: true, style: &quot;margin-left: 5px;visibility:hidden;&quot; </haml_loud></span>

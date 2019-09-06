@@ -1,0 +1,4 @@
+- @pomodoros.each do |pomodoro|
+  %p= pomodoro.task.title
+  %p
+    = pomodoro.task.created_at.strftime("%F %T")

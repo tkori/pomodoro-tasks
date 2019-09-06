@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Pomodoro Tasks
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application'
+  %body
+    %nav.navbar.navbar-expand-lg.navbar-dark{:style => "background-color: #ea5549;"}
+      = link_to "Pomodoro Tasks", root_path, class: "navbar-brand"
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.ml-auto
+          - if user_signed_in?
+            %li.nav-item.dropdown.active
+              = link_to "#{current_user.name}", user_path(current_user.id), class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown"}, aria: { haspopup: "true", expanded: "false" }
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                = link_to "ポモドーロ一覧", user_path(current_user.id), class: "dropdown-item"
+                .dropdown-divider
+                = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
+          - else
+            %li.nav-item.active
+              = link_to "ログイン", new_user_session_path, class: "nav-link"
+            %li.nav-item.active
+              = link_to "新規登録", new_user_registration_path, class: "nav-link"
+    #wrapper{:style => "width: 65%; margin: 0 auto; padding-top: 30px;"}
+      = yield
