@@ -15,7 +15,6 @@ class PomodorosController < ApplicationController
 
   def update
     @pomodoro = Pomodoro.find(params[:id])
-    binding.pry
     @pomodoro.update(status: params[:status])
     @pomodoro = Pomodoro.new
     @pomodoros_for_week = current_user.pomodoros.where('created_at > ?', 7.days.ago).where(status: 1).order(created_at: :desc).group_by{|pomodoro| pomodoro.created_at.strftime("%Y/%-m/%-d (%a)")}
