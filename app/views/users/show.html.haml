@@ -1,0 +1,15 @@
+.projects{:style => "margin: 30px 0 0;"}
+  %h1 プロジェクト一覧
+  %ul.list-group
+    - @projects.each do |project|
+      %li.list-group-item
+        %span.project-title
+          = project.title
+
+.pomodoros{:style => "margin: 30px 0 80px;"}
+  %h1 ポモドーロ一覧
+  %ul.list-group
+    - @pomodoros.each do |pomodoro|
+      %li.list-group-item
+        %span.pomodoro-title
+          = pomodoro.title

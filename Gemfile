@@ -42,11 +42,14 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'webpacker'
 gem 'react-rails'
-gem 'haml'
+gem 'haml-rails'
+gem 'erb2haml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'rubocop', require: false
 end
 
 group :development do

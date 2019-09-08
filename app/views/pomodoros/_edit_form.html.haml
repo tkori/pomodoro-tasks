@@ -1,0 +1,14 @@
+= form_with model: pomodoro, id: 'new-pomodoro-form', class: 'new-pomodoro__form', method: :patch do |form|
+  .new-pomodoro__form__display
+    = form.text_field :title, class: "new-pomodoro__form__display__title form-control", placeholder: 'タスク名を入力してください'
+    = form.collection_select :project_id, current_user.projects.where(status: 0), :id, :title, class: "new-pomodoro__form__display__project", prompt: "----"
+    %span#remaining-time.new-pomodoro__form__display__remaining-time
+      00:10
+    = form.hidden_field :end_time, value: DateTime.now
+    = form.hidden_field :status, value: 1
+    %span.new-pomodoro__form__display__buttons
+      = button_tag type: 'submit', id: "pomodoro-stop", class: "new-pomodoro__form__display__buttons__stop btn" do
+        %i.fa.fa-stop.fa-lg
+      = link_to pomodoro_path(pomodoro.id), method: :delete, remote: true do
+        = button_tag type: 'submit', id: "pomodoro-delete", class: "new-pomodoro__form__display__buttons__delete btn" do
+          %i.fa.fa-trash.fa-2x

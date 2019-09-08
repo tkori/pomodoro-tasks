@@ -1,0 +1,18 @@
+-# #timer{:style => "width: 100%;height:280px;background-color:lightgray;text-align:center;padding-top:10px;border-radius:10px;"}
+-#   %p.pomodoro-title{:style => "font-size:1.3em;margin-bottom:0"} ---
+-#   %p#time{:style => "font-size:6.5em;letter-spacing:7px;margin-bottom:7px;"} 25:00
+-#   .buttons{:style => "width:140px;height:48px;margin:0 auto;position:relative;"}
+-#     %span#play{:style => "cursor:pointer;visibility:visible;position:absolute;top:0;left:0;"}= fa_icon "play 3x"
+-#     %span#pause{:style => "cursor:pointer;visibility:hidden;position:absolute;top:0;left:0;"}= fa_icon "pause 3x"
+-#     %span#stop{:style => "cursor:pointer;position:absolute;top:0;right:0;"}= fa_icon "stop 3x"
+-# #form{:style => "position:relative; margin-top: 30px;"}
+-#   = form_for @project, remote: true do |f|
+-#     .form-group
+-#       / <haml_loud> f.label :title, &quot;New Project&quot;, style: &quot;font-size: 1.3em;&quot; </haml_loud>
+-#       #project-input{:style => "position:relative;"}
+-#         = f.text_field :title, class: "form-control", style: "padding-right: 225px;", placeholder: 'タスク名を入力してください'
+-#         = f.label :total, "ポモドーロ数：", style: "position:absolute;top:7px;right:105px;"
+-#         = f.number_field :total, class: 'form-group', value: 1, in: 1..999, style: "position:absolute;top:4px;right:50px;margin:0;text-align:center;"
+-#       = f.hidden_field :status, value: 0
+-#       = f.hidden_field :done, value: 0
+-#     = f.submit "+", class: "btn btn-primary", style: "position:absolute; right:0; bottom:0"

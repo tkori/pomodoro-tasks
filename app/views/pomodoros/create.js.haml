@@ -1,0 +1,39 @@
+:plain
+  function zeroPadding(num) {
+    return num < 10 ? '0' + num.toString() : num;
+  }
+  function countDown() {
+    var remainingTime = $("#remaining-time").html();
+    var remainingArray = remainingTime.split(':');
+    var remainingSeconds = parseInt(remainingArray[0]) * 60 + parseInt(remainingArray[1]);
+    remainingSeconds -= 1;
+    if (remainingSeconds < 0) {
+      clearInterval(timer);
+      $("#remaining-time").html("終了");
+      var url = $('#new-pomodoro-form').attr('action');
+      var formData = new FormData();
+      formData.append('end_time', '2019-09-08 12:20:55');
+      formData.append('status', '1');
+      $.ajax({
+        url: url,
+        type: "PATCH",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(data){
+        alert('投稿成功');
+      })
+      .fail(function(data){
+        alert('投稿に失敗しました');
+      })
+    } else {
+      $("#remaining-time").html(`${zeroPadding(Math.floor(remainingSeconds / 60))}:${zeroPadding(remainingSeconds % 60)}`);
+    }
+  }
+
+  var timer = setInterval(countDown, 1000);
+
+  $('#new-pomodoro').html("#{escape_javascript(render partial: 'pomodoros/edit_form', locals: { pomodoro: @pomodoro })}");
+  $('#pomodoros-for-week').html("#{escape_javascript(render partial: 'pomodoros/pomodoros', locals: { pomodoros_for_week: @pomodoros_for_week })}")

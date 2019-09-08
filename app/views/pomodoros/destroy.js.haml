@@ -1,0 +1,4 @@
+:plain
+  clearInterval(timer);  
+  $('#new-pomodoro').html("#{escape_javascript(render partial: 'pomodoros/new_form', locals: { pomodoro: @pomodoro })}");
+  $('#pomodoros-for-week').html("#{escape_javascript(render partial: 'pomodoros/pomodoros', locals: { pomodoros_for_week: @pomodoros_for_week })}")

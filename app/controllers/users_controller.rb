@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def show
-    @user = User.find(params[:id])
-    if current_user.id == @user.id
-      @pomodoros = @user.pomodoros.order("created_at DESC")
-    else
-      redirect_to root_url
-    end
+    @projects = current_user.projects.where(status: 0).order('created_at DESC')
+    @pomodoros = current_user.pomodoros.where(status: 1).order('created_at DESC')
   end
 end

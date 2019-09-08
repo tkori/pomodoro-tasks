@@ -1,0 +1,13 @@
+- pomodoros_for_week.each do |date, pomodoros|
+  .pomodoros-for-week__each-day
+    %p.pomodoros-for-week__each-day__date
+      = date
+    %ul.pomodoros-for-week__each-day__list.list-group
+      - pomodoros.each do |pomodoro|
+        %li.pomodoros-for-week__each-day__list__item.list-group-item
+          %span.pomodoros-for-week__each-day__list__item__title
+            = pomodoro.title
+          %span.pomodoros-for-week__each-day__list__item__project.badge.badge-secondary
+            = pomodoro.project.title
+          %span.pomodoros-for-week__each-day__list__item__time
+            = "#{pomodoro.start_time.strftime('%R')} - #{pomodoro.end_time.strftime('%R')}"
