@@ -3,7 +3,7 @@
     = form.text_field :title, class: "new-pomodoro__form__display__title form-control", placeholder: 'タスク名を入力してください'
     = form.collection_select :project_id, current_user.projects.where(status: 0), :id, :title, class: "new-pomodoro__form__display__project", prompt: "----"
     %span#remaining-time.new-pomodoro__form__display__remaining-time
-      00:10
+      25:00
     = form.hidden_field :end_time, value: DateTime.now
     = form.hidden_field :status, value: 1
     %span.new-pomodoro__form__display__buttons
