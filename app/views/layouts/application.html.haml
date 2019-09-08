@@ -16,12 +16,10 @@
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.ml-auto
           - if user_signed_in?
-            %li.nav-item.dropdown.active
-              = link_to "#{current_user.name}", user_path(current_user.id), class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown"}, aria: { haspopup: "true", expanded: "false" }
-              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-                = link_to "ポモドーロ一覧", user_path(current_user.id), class: "dropdown-item"
-                .dropdown-divider
-                = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
+            %li.nav-item.active
+              = link_to "#{current_user.name}", user_path(current_user.id), class: "nav-link"
+            %li.nav-item.active
+              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
           - else
             %li.nav-item.active
               = link_to "ログイン", new_user_session_path, class: "nav-link"
