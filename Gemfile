@@ -44,6 +44,7 @@ gem 'webpacker'
 gem 'react-rails'
 gem 'haml-rails'
 gem 'erb2haml'
+gem "nokogiri", ">= 1.10.4"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
