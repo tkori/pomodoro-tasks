@@ -1,24 +1,12 @@
-# README
+# 使い方
+![](https://i.gyazo.com/d391c9e7141594db50d1b64b569b0ec4.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 制作理由
 
-Things you may want to cover:
+# 工夫点
 
-* Ruby version
+# 苦労した点
 
-* System dependencies
+# これから実装したい機能
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# DB設計
