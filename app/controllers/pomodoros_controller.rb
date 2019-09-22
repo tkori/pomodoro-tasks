@@ -29,6 +29,6 @@ class PomodorosController < ApplicationController
 
   private
   def pomodoro_params
-    params.require(:pomodoro).permit(:title, :status, :project_id, :start_time, :end_time, :memo).merge(user_id: current_user.id)
+    params.require(:pomodoro).permit(:title, :status, :project_id, :start_time, :end_time, :memo, project_attributes: [:title, :user_id, :total]).merge(user_id: current_user.id)
   end
 end

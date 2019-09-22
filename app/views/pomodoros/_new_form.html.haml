@@ -1,7 +1,11 @@
 = form_with model: pomodoro, id: 'new-pomodoro-form', class: 'new-pomodoro__form' do |form|
   .new-pomodoro__form__display
     = form.text_field :title, class: "new-pomodoro__form__display__title form-control", placeholder: 'タスク名を入力してください'
-    = form.collection_select :project_id, current_user.projects.where(status: 0), :id, :title, class: "new-pomodoro__form__display__project", prompt: "----"
+    = form.fields_for 'project_attributes', pomodoro.project do |project|
+      = project.text_field :title, class: "new-pomodoro__form__display__project", placeholder: 'プロジェクト名'
+      = project.hidden_field :user_id, value: current_user.id
+      = project.hidden_field :total, value: 0
+    -# = form.collection_select(:project_id, current_user.projects.where(status: 0), :id, :title, {prompt: "----"}, {class: "new-pomodoro__form__display__project"})
     %span#remaining-time.new-pomodoro__form__display__remaining-time
       25:00
     = form.hidden_field :start_time, value: DateTime.now
